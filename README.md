@@ -1,11 +1,14 @@
 # ticket-system
 
-After clone run this command
+==> After clone dev-addweb branch : 
+    --git clone -b dev-addweb https://github.com/karnikchokshi/ticket-system.git
 
-1) composer install
-2) npm install
-3) npm run dev
-4) php artisan migrate:fresh --seed
+==> run below command
+
+    1) composer install
+    2) npm install
+    3) npm run dev
+    4) php artisan migrate:fresh --seed
 
 -- Refer RolesAndPermissionsSeeder.php for roles and permissions details with user data.
 -- only editor can update ticket.
