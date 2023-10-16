@@ -86,6 +86,9 @@
                             "id": ticketId
                         },
                         success: function(data) {
+                            $('.card-body').prepend(
+                                '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                data.success + '</div>');
                             $('.ticket_datatable').DataTable().ajax.reload();
                         },
                         error: function(error) {
