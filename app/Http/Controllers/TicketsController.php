@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EmailSent;
 use App\Models\RolesPermissions;
 use App\Models\Tickets;
 use App\Models\User;
@@ -77,12 +78,18 @@ class TicketsController extends Controller
             $ticket->user_id = $request->get('user_id') ?? Auth::user()->id;
             $ticket->status = $request->get('status') ?? 'Pending';
             $ticket->save();
+
             /* Send notification code */
             // $user = User::findOrFail($request->get('user_id'));
 
             // $user->notify(
             //     new EmailNotification($ticket, $user)
             // );
+
+            /* Send notification code using Event*/
+            // $user = $request->get('user_id');
+            // $message = 'Ticket has been assigned to you.';
+            // event(new EmailSent($user, $message));
 
             return redirect()->route('tickets.index')->with('success', 'Ticket created successfully.');
         } catch (ValidationException $e) {
@@ -142,6 +149,12 @@ class TicketsController extends Controller
             // $user->notify(
             //     new EmailNotification($ticket, $user)
             // );
+
+
+            /* Send notification code using Event*/
+            // $user = User::findOrFail($request->get('user_id'));
+            // $message = 'Ticket has been assigned to you.';
+            // event(new EmailSent($user, $message));
 
             return redirect()->route('tickets.index')->with('success', 'Ticket updated successfully.');
         } catch (ValidationException $e) {
